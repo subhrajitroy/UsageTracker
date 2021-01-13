@@ -1,5 +1,6 @@
 package com.subhrajit.roy.usagetracker;
 
+import android.app.Dialog;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,10 +10,14 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     public static final String SUCCESS = "Done";
     public static final String ERROR = "error";
     private TextView countView;
-    private int currentCount = 0;
     private TextView usageTextView;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -46,18 +50,30 @@ public class MainActivity extends AppCompatActivity {
                 setUsageOnView(usage);
                 return all;
         }).thenAccept(all -> {
-            all.forEach(u -> setUsageDetail(u));
+            setUsageDetail(all);
         });
 
 
         return 0;
     }
 
-    private void setUsageDetail(Usage usage) {
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void setUsageDetail(List<Usage> usageList) {
+
+        Map<String, Long> collect = usageList.stream().collect(Collectors.groupingBy(usage -> usage.getDateAsString(), Collectors.counting()));
+        StringBuilder textContentBuilder = new StringBuilder();
+
+        Stream<String> sortedKeySet = collect.keySet().stream().sorted();
+
+        sortedKeySet.forEach(k -> {
+            Long count = collect.get(k);
+            String content = String.format("%d Pack(s) bought on %s",count,k);
+            textContentBuilder.append("\n").append(content);
+        });
+
         this.runOnUiThread(() ->{
             if(usageTextView != null){
-                usageTextView.append("\n");
-                usageTextView.append(String.format("1 Pack bought on %s",usage.getDate().toString()));
+                usageTextView.setText(textContentBuilder.toString());
             }
         });
     }
@@ -92,11 +108,25 @@ public class MainActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void reset(View view){
+        ConfirmationDialogHandler handler = (dialog,which) -> {
+            Log.d(APP_TAG,String.format("User selected %d",which));
+            if(Math.abs(which) == 2){
+                deleteDataOnConfirmation();
+            }
+        };
+        new ConfirmationDialogFragment(handler).show(
+                getSupportFragmentManager(),ConfirmationDialogFragment.TAG);
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void deleteDataOnConfirmation() {
         CompletableFuture.runAsync(() -> {
             UsageDAO usageDAO = getUsageDAO();
             usageDAO.deleteAll();
             Integer count = usageDAO.getCount();
             setUsageOnView(count);
+            setUsageDetail(new ArrayList<>());
         });
     }
 

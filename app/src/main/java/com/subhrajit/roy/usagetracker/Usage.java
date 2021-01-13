@@ -3,8 +3,8 @@ package com.subhrajit.roy.usagetracker;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-import androidx.room.TypeConverter;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
@@ -21,6 +21,8 @@ public class Usage {
     private String comment;
 
     private String type;
+
+    private static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-MM-yyyy");
 
     public Usage(){}
 
@@ -71,5 +73,9 @@ public class Usage {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getDateAsString(){
+        return DATE_FORMAT.format(this.date);
     }
 }

@@ -3,4 +3,7 @@
     <string name="button_label_add">Add</string>
     <string name="button_label_reset">Reset</string>
     <string name="count_initial_value">0</string>
+    <string name="confirm">Yes</string>
+    <string name="cancel">No</string>
+    <string name="reset_confirmation">This will delete all data.Are you sure ?</string>
 </resources>
