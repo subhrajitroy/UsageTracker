@@ -6,4 +6,12 @@
     <string name="confirm">Yes</string>
     <string name="cancel">No</string>
     <string name="reset_confirmation">This will delete all data.Are you sure ?</string>
+    <string name="title_activity_add_usage">AddUsageActivity</string>
+    <string name="usage_type_label">Usage Type</string>
+    <string name="usage_date_label">Change</string>
+    <string name="usage_count">Quantity / Count</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 </resources>

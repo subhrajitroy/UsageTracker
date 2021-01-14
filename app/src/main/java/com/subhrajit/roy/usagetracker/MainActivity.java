@@ -1,6 +1,7 @@
 package com.subhrajit.roy.usagetracker;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -101,9 +102,11 @@ public class MainActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void add(View view){
-        Usage usage = new Usage(1, new Date(),"A pack of 20 cigarettes","");
-        Log.i(APP_TAG,"calling save usage ");
-        saveUsage(usage);
+//        Usage usage = new Usage(1, new Date(),"A pack of 20 cigarettes","");
+//        Log.i(APP_TAG,"calling save usage ");
+//        saveUsage(usage);
+        Intent intent = new Intent(this, AddUsageActivity.class);
+        startActivity(intent);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)

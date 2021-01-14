@@ -9,6 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.UsageTracker">
+        <activity
+            android:name=".AddUsageActivity"
+            android:label="@string/title_activity_add_usage"
+            android:theme="@style/Theme.UsageTracker.NoActionBar"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
