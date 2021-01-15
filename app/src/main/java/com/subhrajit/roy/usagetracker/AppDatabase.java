@@ -7,7 +7,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
-@Database(entities = {Usage.class},version = 3)
+@Database(entities = {Usage.class},version = 4)
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -28,4 +28,11 @@ public abstract class AppDatabase extends RoomDatabase {
         return db;
     }
 
+    @Override
+    public void close() {
+        super.close();
+        if(db != null){
+            db.close();
+        }
+    }
 }

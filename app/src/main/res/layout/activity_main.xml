@@ -64,7 +64,7 @@
         tools:layout_editor_absoluteY="85dp">
 
 
-        <TextView
+        <ListView
             android:id="@+id/usage_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
