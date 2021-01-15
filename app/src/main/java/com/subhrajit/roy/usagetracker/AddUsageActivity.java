@@ -57,7 +57,7 @@ public class AddUsageActivity extends AppCompatActivity {
     }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+
     public void onUsageAdd(View view) throws ParseException {
         TextView itemUsed = findViewById(R.id.usage_type);
         TextView usageDate = findViewById(R.id.usage_date);
@@ -71,7 +71,7 @@ public class AddUsageActivity extends AppCompatActivity {
         saveUsage(usage);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+
     private void saveUsage(Usage usage) {
         UsageDAO usageDAO = getUsageDAO();
         CompletableFuture.supplyAsync(() -> {

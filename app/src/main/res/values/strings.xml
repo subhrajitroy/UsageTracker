@@ -6,7 +6,7 @@
     <string name="confirm">Yes</string>
     <string name="cancel">No</string>
     <string name="reset_confirmation">This will delete all data.Are you sure ?</string>
-    <string name="title_activity_add_usage">AddUsageActivity</string>
+    <string name="title_activity_add_usage">Add Usage Activity</string>
     <string name="usage_type_label">What did you use</string>
     <string name="usage_date_label">Date</string>
     <string name="usage_count">Quantity / Count</string>

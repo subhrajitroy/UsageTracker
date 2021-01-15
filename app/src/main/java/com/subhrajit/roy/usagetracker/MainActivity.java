@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView countView;
     private ListView usageListView;
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         setUsageForCurrentMonth();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         setUsageForCurrentMonth();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+
     private void setUsageForCurrentMonth() {
 
         CompletableFuture.supplyAsync(() -> {
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         }).thenAccept(this::setUsageDetail);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+
     private void setUsageDetail(List<Usage> usageList) {
 
         Map<Date, List<Usage>> collect = usageList.stream().collect(Collectors.groupingBy(Usage::getDate));
@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+
     private int getUsageForCurrentMonth(List<Usage> all) {
         int currentMonth = Calendar.getInstance().get(Calendar.MONTH);
 
@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
         return sumForCurrentMonth;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+
     public void add(View view){
 //        Usage usage = new Usage(1, new Date(),"A pack of 20 cigarettes","");
 //        Log.i(APP_TAG,"calling save usage ");
@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+
     public void reset(View view){
         ConfirmationDialogHandler handler = (dialog,which) -> {
             Log.d(APP_TAG, format("User selected %d",which));
@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+
     private void deleteDataOnConfirmation() {
         CompletableFuture.runAsync(() -> {
             UsageDAO usageDAO = getUsageDAO();
