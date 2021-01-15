@@ -18,19 +18,19 @@ public class Usage {
 
     private Date date;
 
-    private String comment;
+    private String unitType;
 
-    private String type;
+    private String itemUsed;
 
     private static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-MM-yyyy");
 
     public Usage(){}
 
-    public Usage(int count, Date date, String comment, String type) {
+    public Usage(int count, Date date, String unitType, String itemUsed) {
         this.count = count;
         this.date = date;
-        this.comment = comment;
-        this.type = type;
+        this.unitType = unitType;
+        this.itemUsed = itemUsed;
         this.id = UUID.randomUUID();
     }
 
@@ -59,20 +59,20 @@ public class Usage {
         this.date = date;
     }
 
-    public String getComment() {
-        return comment;
+    public String getUnitType() {
+        return unitType;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setUnitType(String unitType) {
+        this.unitType = unitType;
     }
 
-    public String getType() {
-        return type;
+    public String getItemUsed() {
+        return itemUsed;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setItemUsed(String itemUsed) {
+        this.itemUsed = itemUsed;
     }
 
     public String getDateAsString(){

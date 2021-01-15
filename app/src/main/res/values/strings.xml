@@ -7,11 +7,21 @@
     <string name="cancel">No</string>
     <string name="reset_confirmation">This will delete all data.Are you sure ?</string>
     <string name="title_activity_add_usage">AddUsageActivity</string>
-    <string name="usage_type_label">Usage Type</string>
-    <string name="usage_date_label">Change</string>
+    <string name="usage_type_label">What did you use</string>
+    <string name="usage_date_label">Date</string>
     <string name="usage_count">Quantity / Count</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <string name="usage_unit_label">Unit</string>
+    <string name="usage_date_add_label">Add</string>
+    <string name="usage_date_cancel_label">Cancel</string>
+    <string name="spinner_title">Unit(s) used</string>
+    <string-array name="usage_types_array">
+        <item>Kg</item>
+        <item>L</item>
+        <item>Piece(s)</item>
+        <item>Pack(s)</item>
+        <item>Dozen(s)</item>
+        <item>Meter</item>
+        <item>Misc</item>
+    </string-array>
 
 </resources>

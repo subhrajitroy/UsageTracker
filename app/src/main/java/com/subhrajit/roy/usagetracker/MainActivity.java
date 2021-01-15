@@ -1,6 +1,5 @@
 package com.subhrajit.roy.usagetracker;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -24,8 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String LOG_TAG  = MainActivity.class.getSimpleName();
     private static final String APP_TAG  = "app";
-    public static final String SUCCESS = "Done";
-    public static final String ERROR = "error";
+
     private TextView countView;
     private TextView usageTextView;
 
@@ -36,6 +34,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         countView = findViewById(R.id.show_count);
         usageTextView = findViewById(R.id.usage_text);
+        setUsageForCurrentMonth();
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i(LOG_TAG,"In start");
+        setUsageForCurrentMonth();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i(LOG_TAG,"In resume");
         setUsageForCurrentMonth();
     }
 
@@ -61,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void setUsageDetail(List<Usage> usageList) {
 
-        Map<String, Long> collect = usageList.stream().collect(Collectors.groupingBy(usage -> usage.getDateAsString(), Collectors.counting()));
+        Map<String, Long> collect = usageList.stream().collect(Collectors.groupingBy(usage -> usage.getItemUsed(), Collectors.counting()));
         StringBuilder textContentBuilder = new StringBuilder();
 
         Stream<String> sortedKeySet = collect.keySet().stream().sorted();
@@ -130,21 +145,6 @@ public class MainActivity extends AppCompatActivity {
             Integer count = usageDAO.getCount();
             setUsageOnView(count);
             setUsageDetail(new ArrayList<>());
-        });
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void saveUsage(Usage usage) {
-        UsageDAO usageDAO = getUsageDAO();
-        CompletableFuture.supplyAsync(() -> {
-            usageDAO.save(usage);
-            return SUCCESS;
-        }).thenApply((res) -> {
-            setUsageForCurrentMonth();
-            return SUCCESS;
-        }).exceptionally(ex -> {
-            Log.e(APP_TAG, ex.getMessage(), ex);
-            return ERROR;
         });
     }
 

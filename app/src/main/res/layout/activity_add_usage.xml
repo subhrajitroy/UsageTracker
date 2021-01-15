@@ -6,15 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".AddUsageActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/add_usage_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:layout_constraintStart_toStartOf="parent"
+        app:titleTextColor="@color/white"
+        />
+
     <TableLayout
         android:id="@+id/form"
-        android:layout_width="390dp"
-        android:layout_height="419dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         app:layout_anchorGravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="15dp">
 
         <TableRow
             android:layout_width="match_parent"
@@ -39,7 +52,8 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp">
 
             <TextView
                 android:id="@+id/usage_date_label"
@@ -76,7 +90,8 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp">
 
             <TextView
                 android:id="@+id/usage_count_label"
@@ -88,7 +103,7 @@
                 android:textAlignment="center"/>
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/usage_count"
+                android:id="@+id/usage_unit_count"
                 android:layout_width="0dp"
                 android:layout_weight="1">
 
@@ -97,7 +112,59 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/usage_unit_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="@string/usage_unit_label"
+                android:textAlignment="center"/>
+
+            <Spinner
+                android:id="@+id/usage_unit_type"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:prompt="@string/spinner_title">
+
+            </Spinner>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="122dp"
+                android:layout_weight="1"
+                android:layoutDirection="ltr"
+                >
+
+                <Button
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:onClick="onUsageAdd"
+                    android:text="@string/usage_date_add_label"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"/>
+
+                <Button
+                    android:layout_height="wrap_content"
+                    android:layout_width="20dp"
+                    android:layout_weight="1"
+                    android:onClick="onCancel"
+                    android:text="@string/usage_date_cancel_label"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    />
+            </LinearLayout>
+        </TableRow>
     </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
